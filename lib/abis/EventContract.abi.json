@@ -1,0 +1,35 @@
+[
+  {
+    "type": "function",
+    "name": "mint",
+    "inputs": [
+      { "name": "to", "type": "address" },
+      { "name": "tierId", "type": "uint256" },
+      { "name": "amount", "type": "uint256" },
+      { "name": "data", "type": "bytes" }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "balanceOf",
+    "inputs": [{ "name": "account", "type": "address" }, { "name": "id", "type": "uint256" }],
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "checkedIn",
+    "inputs": [{ "name": "account", "type": "address" }, { "name": "tokenId", "type": "uint256" }],
+    "outputs": [{ "name": "", "type": "bool" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "markCheckedIn",
+    "inputs": [{ "name": "account", "type": "address" }, { "name": "tokenId", "type": "uint256" }],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  }
+]

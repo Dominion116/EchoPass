@@ -1,0 +1,28 @@
+[
+  {
+    "type": "function",
+    "name": "createEvent",
+    "inputs": [
+      {
+        "name": "eventData",
+        "type": "tuple",
+        "components": [
+          { "name": "name", "type": "string" },
+          { "name": "description", "type": "string" },
+          { "name": "startTime", "type": "uint256" },
+          { "name": "endTime", "type": "uint256" },
+          { "name": "organizer", "type": "address" }
+        ]
+      }
+    ],
+    "outputs": [{ "name": "", "type": "address" }],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getEvents",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address[]" }],
+    "stateMutability": "view"
+  }
+]

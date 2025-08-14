@@ -1,0 +1,14 @@
+[
+  {
+    "type": "function",
+    "name": "requestCheckIn",
+    "inputs": [
+      { "name": "eventContract", "type": "address" },
+      { "name": "tokenId", "type": "uint256" },
+      { "name": "proof", "type": "bytes" },
+      { "name": "salt", "type": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  }
+]
