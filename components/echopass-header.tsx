@@ -3,11 +3,13 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ConnectWalletButton } from "@/components/connect-wallet-button"
-import { Ticket, Calendar, BarChart3 } from "lucide-react"
+import { Ticket, Calendar, BarChart3, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useState } from "react"
 
 export function EchoPassHeader() {
   const pathname = usePathname()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navigation = [
     { name: "Events", href: "/", icon: Calendar },
@@ -29,6 +31,7 @@ export function EchoPassHeader() {
               </span>
             </Link>
 
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-6">
               {navigation.map((item) => {
                 const Icon = item.icon
@@ -51,8 +54,47 @@ export function EchoPassHeader() {
             </nav>
           </div>
 
-          <ConnectWalletButton />
+          {/* Mobile Menu Button and Desktop Wallet Button */}
+          <div className="flex items-center gap-4">
+            <div className="hidden md:block">
+              <ConnectWalletButton />
+            </div>
+
+            <button className="md:hidden text-white p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden border-t border-white/10 py-4">
+            <nav className="space-y-2">
+              {navigation.map((item) => {
+                const Icon = item.icon
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={cn(
+                      "flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors",
+                      pathname === item.href
+                        ? "bg-purple-500/20 text-purple-300"
+                        : "text-gray-300 hover:text-white hover:bg-white/5",
+                    )}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {item.name}
+                  </Link>
+                )
+              })}
+            </nav>
+            <div className="mt-4 pt-4 border-t border-white/10">
+              <ConnectWalletButton />
+            </div>
+          </div>
+        )}
       </div>
     </header>
   )

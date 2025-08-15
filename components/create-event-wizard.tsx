@@ -123,18 +123,18 @@ export function CreateEventWizard() {
   const progress = (currentStep / STEPS.length) * 100
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6">
       {/* Progress Header */}
       <Card className="mb-8 bg-gradient-to-r from-white/5 to-white/10 border-white/10">
         <CardHeader>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
             <CardTitle className="text-white">Create New Event</CardTitle>
-            <Badge variant="outline" className="bg-purple-500/20 text-purple-300 border-purple-500/30">
+            <Badge variant="outline" className="bg-purple-500/20 text-purple-300 border-purple-500/30 w-fit">
               Step {currentStep} of {STEPS.length}
             </Badge>
           </div>
           <Progress value={progress} className="mb-4" />
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {STEPS.map((step) => (
               <div
                 key={step.id}
@@ -170,7 +170,7 @@ export function CreateEventWizard() {
                 >
                   {step.name}
                 </h3>
-                <p className="text-xs text-gray-500 mt-1">{step.description}</p>
+                <p className="text-xs text-gray-500 mt-1 hidden sm:block">{step.description}</p>
               </div>
             ))}
           </div>
@@ -179,22 +179,22 @@ export function CreateEventWizard() {
 
       {/* Step Content */}
       <Card className="mb-8 bg-gradient-to-br from-white/5 to-white/10 border-white/10">
-        <CardContent className="p-8">{renderStep()}</CardContent>
+        <CardContent className="p-4 sm:p-6 lg:p-8">{renderStep()}</CardContent>
       </Card>
 
       {/* Navigation */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <Button
           variant="outline"
           onClick={prevStep}
           disabled={currentStep === 1}
-          className="bg-transparent border-white/20 text-white hover:bg-white/10"
+          className="bg-transparent border-white/20 text-white hover:bg-white/10 w-full sm:w-auto"
         >
           <ChevronLeft className="h-4 w-4 mr-2" />
           Previous
         </Button>
 
-        <div className="text-sm text-gray-400">
+        <div className="text-sm text-gray-400 order-first sm:order-none">
           Step {currentStep} of {STEPS.length}
         </div>
 
@@ -202,7 +202,7 @@ export function CreateEventWizard() {
           <Button
             onClick={handleDeploy}
             disabled={isDeploying || !validateStep(currentStep)}
-            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 w-full sm:w-auto"
           >
             {isDeploying ? "Deploying..." : "Deploy Event"}
           </Button>
@@ -210,7 +210,7 @@ export function CreateEventWizard() {
           <Button
             onClick={nextStep}
             disabled={!validateStep(currentStep)}
-            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 w-full sm:w-auto"
           >
             Next
             <ChevronRight className="h-4 w-4 ml-2" />

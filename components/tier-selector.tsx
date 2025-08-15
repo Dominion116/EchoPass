@@ -28,17 +28,17 @@ export function TierSelector({ tier, onMint, isLoading = false }: TierSelectorPr
   return (
     <Card className="bg-gradient-to-br from-white/5 to-white/10 border-white/10 hover:border-purple-500/30 transition-all duration-300">
       <CardHeader>
-        <div className="flex items-start justify-between">
-          <div>
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div className="flex-1">
             <CardTitle className="text-white">{tier.name}</CardTitle>
             <p className="text-gray-400 text-sm mt-1">{tier.description}</p>
           </div>
-          <div className="text-right">
-            <div className="text-2xl font-bold text-purple-300 flex items-center gap-1">
+          <div className="text-center sm:text-right">
+            <div className="text-2xl font-bold text-purple-300 flex items-center justify-center sm:justify-end gap-1">
               <Zap className="h-5 w-5" />
               {tier.price} ETH
             </div>
-            <div className="text-sm text-gray-400 flex items-center gap-1 mt-1">
+            <div className="text-sm text-gray-400 flex items-center justify-center sm:justify-end gap-1 mt-1">
               <Users className="h-3 w-3" />
               {remaining} left
             </div>
@@ -51,9 +51,9 @@ export function TierSelector({ tier, onMint, isLoading = false }: TierSelectorPr
           <h4 className="text-sm font-medium text-gray-300">Benefits:</h4>
           <ul className="space-y-1">
             {tier.benefits.map((benefit, index) => (
-              <li key={index} className="text-sm text-gray-400 flex items-center gap-2">
-                <CheckCircle className="h-3 w-3 text-green-400 flex-shrink-0" />
-                {benefit}
+              <li key={index} className="text-sm text-gray-400 flex items-start gap-2">
+                <CheckCircle className="h-3 w-3 text-green-400 flex-shrink-0 mt-0.5" />
+                <span className="break-words">{benefit}</span>
               </li>
             ))}
           </ul>
@@ -61,27 +61,27 @@ export function TierSelector({ tier, onMint, isLoading = false }: TierSelectorPr
 
         {isAvailable ? (
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <span className="text-sm text-gray-300">Quantity:</span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3 justify-center sm:justify-end">
                 <Button
                   size="sm"
                   variant="outline"
                   onClick={() => handleQuantityChange(-1)}
                   disabled={quantity <= 1}
-                  className="h-8 w-8 p-0"
+                  className="h-10 w-10 p-0 touch-manipulation"
                 >
-                  <Minus className="h-3 w-3" />
+                  <Minus className="h-4 w-4" />
                 </Button>
-                <span className="w-8 text-center text-white">{quantity}</span>
+                <span className="w-12 text-center text-white text-lg font-medium">{quantity}</span>
                 <Button
                   size="sm"
                   variant="outline"
                   onClick={() => handleQuantityChange(1)}
                   disabled={quantity >= remaining}
-                  className="h-8 w-8 p-0"
+                  className="h-10 w-10 p-0 touch-manipulation"
                 >
-                  <Plus className="h-3 w-3" />
+                  <Plus className="h-4 w-4" />
                 </Button>
               </div>
             </div>
@@ -94,7 +94,7 @@ export function TierSelector({ tier, onMint, isLoading = false }: TierSelectorPr
             <Button
               onClick={() => onMint(tier.id, quantity)}
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 h-12 text-base touch-manipulation"
             >
               {isLoading ? "Minting..." : `Mint ${quantity} Ticket${quantity > 1 ? "s" : ""}`}
             </Button>
@@ -102,7 +102,7 @@ export function TierSelector({ tier, onMint, isLoading = false }: TierSelectorPr
         ) : (
           <Badge
             variant="secondary"
-            className="w-full justify-center py-2 bg-red-500/20 text-red-400 border-red-500/30"
+            className="w-full justify-center py-3 bg-red-500/20 text-red-400 border-red-500/30 text-base"
           >
             Sold Out
           </Badge>

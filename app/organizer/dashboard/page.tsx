@@ -78,15 +78,15 @@ export default function OrganizerDashboard() {
         </div>
 
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
           <div>
             <h1 className="text-3xl font-bold text-white mb-2">Organizer Dashboard</h1>
             <p className="text-gray-400">Track your event performance and analytics</p>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Select value={selectedEvent} onValueChange={setSelectedEvent}>
-              <SelectTrigger className="w-64 bg-white/5 border-white/10 text-white">
+              <SelectTrigger className="w-full sm:w-64 bg-white/5 border-white/10 text-white">
                 <SelectValue placeholder="Select Event" />
               </SelectTrigger>
               <SelectContent>
@@ -100,7 +100,7 @@ export default function OrganizerDashboard() {
             </Select>
 
             <Select value={timeRange} onValueChange={setTimeRange}>
-              <SelectTrigger className="w-32 bg-white/5 border-white/10 text-white">
+              <SelectTrigger className="w-full sm:w-32 bg-white/5 border-white/10 text-white">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -175,7 +175,7 @@ export default function OrganizerDashboard() {
         </div>
 
         {/* Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 mb-8">
           <AnalyticsChart title="Daily Ticket Sales" type="bar" data={salesData} dataKey="value" xAxisKey="name" />
 
           <AnalyticsChart
@@ -206,24 +206,32 @@ export default function OrganizerDashboard() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-lg border border-white/10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+              <div className="p-4 lg:p-6 rounded-lg border border-white/10">
                 <h4 className="text-white font-medium mb-2">Sales Report</h4>
                 <p className="text-gray-400 text-sm mb-4">
                   Export detailed sales data including ticket types, prices, and timestamps
                 </p>
-                <Button onClick={() => exportCSV("sales")} variant="outline" className="bg-transparent">
+                <Button
+                  onClick={() => exportCSV("sales")}
+                  variant="outline"
+                  className="bg-transparent w-full sm:w-auto touch-manipulation"
+                >
                   <Download className="h-4 w-4 mr-2" />
                   Export Sales CSV
                 </Button>
               </div>
 
-              <div className="p-4 rounded-lg border border-white/10">
+              <div className="p-4 lg:p-6 rounded-lg border border-white/10">
                 <h4 className="text-white font-medium mb-2">Attendance Report</h4>
                 <p className="text-gray-400 text-sm mb-4">
                   Export attendee list with check-in status and contact information
                 </p>
-                <Button onClick={() => exportCSV("attendance")} variant="outline" className="bg-transparent">
+                <Button
+                  onClick={() => exportCSV("attendance")}
+                  variant="outline"
+                  className="bg-transparent w-full sm:w-auto touch-manipulation"
+                >
                   <Download className="h-4 w-4 mr-2" />
                   Export Attendance CSV
                 </Button>

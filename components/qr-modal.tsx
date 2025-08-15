@@ -60,15 +60,15 @@ export function QRModal({ isOpen, onClose, ticket }: QRModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-gradient-to-br from-gray-900 to-gray-800 border-white/10">
+      <DialogContent className="w-[95vw] max-w-md mx-auto bg-gradient-to-br from-gray-900 to-gray-800 border-white/10">
         <DialogHeader>
           <DialogTitle className="text-center text-white">Check-in QR Code</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-6">
           <div className="flex justify-center">
-            <div className="p-4 bg-white rounded-lg">
-              <canvas ref={canvasRef} />
+            <div className="p-3 sm:p-4 bg-white rounded-lg">
+              <canvas ref={canvasRef} className="max-w-full h-auto" />
             </div>
           </div>
 
@@ -77,12 +77,15 @@ export function QRModal({ isOpen, onClose, ticket }: QRModalProps) {
             <p className="text-xs text-gray-500">QR code refreshes automatically for security</p>
           </div>
 
-          <div className="flex gap-2">
-            <Button onClick={refreshQR} variant="outline" className="flex-1 bg-transparent">
+          <div className="flex flex-col xs:flex-row gap-2">
+            <Button onClick={refreshQR} variant="outline" className="flex-1 bg-transparent touch-manipulation">
               <RefreshCw className="h-4 w-4 mr-2" />
               Refresh
             </Button>
-            <Button onClick={downloadQR} className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500">
+            <Button
+              onClick={downloadQR}
+              className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 touch-manipulation"
+            >
               <Download className="h-4 w-4 mr-2" />
               Download
             </Button>
